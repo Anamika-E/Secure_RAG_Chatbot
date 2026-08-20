@@ -174,13 +174,13 @@ Secure_RAG_Chatbot/
 ├── README.md
 ├── security_log.txt
 │
-├── pii_test.txt
+├── pii.test.txt
 ├── poison_test.txt
+├── position_test.txt
 ├── empty.txt
 ├── fake.pdf
 │
-├── main/
-└── venv/
+└── .gitignore
 
 ⚙️ Installation
 

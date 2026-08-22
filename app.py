@@ -309,48 +309,9 @@ def show_security_dashboard():
 
     logs = get_security_logs()
 
-# Recent Security Logs
-    st.sidebar.markdown("### 📋 Recent Security Logs")
-
-    if not logs:
-        st.sidebar.info("No security events recorded yet.")
-    else:
-        for log in logs[-5:][::-1]:
-            st.sidebar.code(log.strip())
-
-    # Security Event Counts
-    prompt_count = sum("PROMPT INJECTION" in log for log in logs)
-    out_context_count = sum("OUT-OF-CONTEXT" in log for log in logs)
-    poisoning_count = sum("DATA POISONING" in log for log in logs)
-
     st.sidebar.markdown("### 🔐 Security Dashboard")
 
-    st.sidebar.metric("🚨 Prompt Injection", prompt_count)
-    st.sidebar.metric("⚠️ Out-of-Context", out_context_count)
-    st.sidebar.metric("🛡️ Data Poisoning", poisoning_count)
-
-    # Total security events
-
-    total_events = len(logs)
-
-    st.sidebar.metric(
-        "🔐 Total Security Events",
-        total_events
-    )
-
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("🔐 Security Dashboard")
-
-    if not logs:
-
-        st.sidebar.info(
-            "No security events recorded yet."
-        )
-
-        return
-
     # Count security events
-
     prompt_injection_count = sum(
         "PROMPT INJECTION" in log
         for log in logs
@@ -366,8 +327,9 @@ def show_security_dashboard():
         for log in logs
     )
 
-    # Display counts
+    total_events = len(logs)
 
+    # Display security metrics
     st.sidebar.metric(
         "🚨 Prompt Injection",
         prompt_injection_count
@@ -383,15 +345,27 @@ def show_security_dashboard():
         data_poisoning_count
     )
 
-    # View logs
+    st.sidebar.metric(
+        "🔐 Total Security Events",
+        total_events
+    )
 
-    with st.sidebar.expander(
-        "📋 View Security Logs"
-    ):
+    # View recent security logs
+    st.sidebar.markdown("### 📋 Recent Security Logs")
 
-        for log in reversed(logs):
+    if not logs:
 
-            st.write(log.strip())
+        st.sidebar.info(
+            "No security events recorded yet."
+        )
+
+    else:
+
+        for log in logs[-5:][::-1]:
+
+            st.sidebar.code(
+                log.strip()
+            )
 # Show security dashboard
 
 show_security_dashboard()            

@@ -130,9 +130,9 @@ if uploaded_file is not None:
 
             uploaded_file.seek(0)
 
-        st.sidebar.success(
+    st.sidebar.success(
             "✅ File passed security validation."
-        )
+    )
 
 
 # =========================================================

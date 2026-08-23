@@ -131,7 +131,7 @@ if uploaded_file is not None:
             uploaded_file.seek(0)
 
     st.sidebar.success(
-            "✅ File passed security validation."
+        "✅ File passed security validation."
     )
 
 
@@ -156,9 +156,9 @@ if uploaded_file is not None:
 
         extracted_text = uploaded_file.read().decode("utf-8")
 
-
+# =========================================================
 # 4. PII MASKING
-# ==================================================
+# =========================================================
 
 def mask_pii(text):
 
@@ -283,7 +283,7 @@ def log_security_event(event_type, message):
 
 
 # =========================================================
-# SECURITY DASHBOARD
+# SECURITY LOG RETRIEVAL
 # =========================================================
 
 def get_security_logs():
@@ -528,9 +528,9 @@ if extracted_text:
     # -----------------------------------------------------
 
     chunks = create_chunks(
-    masked_document,
-    chunk_size=1000,
-    overlap=200
+        masked_document,
+        chunk_size=1000,
+        overlap=200
     )
 
     # =========================================================
@@ -580,7 +580,7 @@ if extracted_text:
     else:
 
         st.sidebar.success(
-           "✅ No suspicious document content detected."
+            "✅ No suspicious document content detected."
         )
 
     # -----------------------------------------------------
@@ -827,6 +827,16 @@ User Question:
 
         except Exception as e:
 
+            log_security_event(
+                "APPLICATION ERROR",
+                str(e)
+            )
+
             st.error(
-                f"Error occurred: {e}"
+                "🚨 An error occurred while processing your request."
+            )
+
+            st.info(
+                "Please check your API key, internet connection, "
+                "or uploaded document and try again."
             )

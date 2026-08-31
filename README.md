@@ -177,6 +177,19 @@ The Streamlit application includes a security dashboard that displays:
 
 ⸻
 
+📸 Screenshots
+
+### Secure RAG Chatbot Interface
+
+![Secure RAG Chatbot](screenshots/Screenshot%202026-08-23%20204137.png)
+
+### RAG Question Answering
+
+![RAG Question Answer](screenshots/Screenshot%202026-08-23%20204344.png)
+
+⸻
+
+
 🧰 Technologies Used
 
 * Python
